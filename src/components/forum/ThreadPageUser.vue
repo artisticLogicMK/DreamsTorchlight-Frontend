@@ -7,21 +7,23 @@ import Userlevel from '@/components/user-items/Userlevel.vue'
 
 <template>
     
-  <div class="flex items-center">
+  <div class="flex items-center mb-2">
     <Userpic class="mr-3" />
     
     <div>
       <Username class="mb-2" />
-      <div class="post-time flex items-center">
+      <div class="flex items-center">
         <Userlevel />
-        <span class="mx-2">•</span>
-        <span class="flex items-center">
-          <PhClock class="mr-1" /> 2 Hours
-        </span>
-        <span class="mx-2">•</span>
-        <span>Edited</span>
       </div>
     </div>
+  </div>
+  
+  <div class="post-time flex items-center">
+    <span>
+      2 March, 2025, 09:58 pm | 2h
+    </span>
+    <span class="mx-2">•</span>
+    <span>Edited</span>
   </div>
 
 </template>

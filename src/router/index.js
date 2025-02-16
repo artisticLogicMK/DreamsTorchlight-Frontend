@@ -3,6 +3,7 @@ import Index from '../views/forum/Index.vue'
 import ForumCategory from '../views/forum/ForumCategory.vue'
 import ForumPage from '../views/forum/ForumPage.vue'
 import ThreadPage from '../views/forum/ThreadPage.vue'
+import CreateThreadPage from '../views/forum/CreateThreadPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,13 @@ const router = createRouter({
       path: '/forum',
       name: 'forum-page',
       component: ForumPage,
+      children: [
+        {
+          path: '/forum/create-thread',
+          name: 'create-thread',
+          component: CreateThreadPage,
+        }
+      ]
     },
     {
       path: '/thread',

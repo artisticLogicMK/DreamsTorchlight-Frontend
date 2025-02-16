@@ -10,6 +10,9 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
         <PhChatCircle weight="fill" /> 256
       </span>
       <span>
+        <PhEye weight="fill" /> 1,256
+      </span>
+      <span>
         <PhHeart weight="fill" /> 412
       </span>
       <span>

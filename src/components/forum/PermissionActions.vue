@@ -15,6 +15,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
         <DropdownMenuLabel>Post Actions</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Edit</DropdownMenuItem>
+        <DropdownMenuItem>Quote</DropdownMenuItem>
         <DropdownMenuItem>Delete</DropdownMenuItem>
         <DropdownMenuItem>Report</DropdownMenuItem>
         <DropdownMenuSeparator />

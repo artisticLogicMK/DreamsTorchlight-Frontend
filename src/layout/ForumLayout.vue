@@ -14,7 +14,7 @@ import RightColumn from '@/components/forum/RightColumn.vue'
       
       <LeftColumn />
       
-      <div class="shrink-0 grow w-[60%] bg-flat overflow-y-auto border-r border-l bdr">
+      <div class="shrink-0 grow relative w-[60%] bg-flat overflow-y-auto border-r border-l bdr">
         <slot />
       </div>
       

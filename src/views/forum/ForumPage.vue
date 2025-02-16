@@ -16,6 +16,8 @@ import ForumPageFilter from '@/components/forum/ForumPageFilter.vue'
     <div>
       <ThreadCard v-for="n in 5" :showSmallTime="true" />
     </div>
+    
+    <RouterView />
 
   </ForumPageLayout>
 </template>

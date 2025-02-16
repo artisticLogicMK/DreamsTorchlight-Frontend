@@ -1,10 +1,13 @@
 import './assets/main.css'
+import 'quill/dist/quill.snow.css'
+import './assets/doc.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config'
 import Lara from '@primevue/themes/lara'
 import { definePreset } from '@primevue/themes'
+
 
 import App from './App.vue'
 import router from './router'
