@@ -8,7 +8,10 @@ import Editor from '@/components/ui/Editor.vue'
 
 const router = useRouter()
 const show = ref(false)
-const contents = ref(null)
+const contents = ref({
+  html: null
+  rawText: null
+})
 
 onMounted(() => {
   show.value=true
@@ -21,7 +24,7 @@ onMounted(() => {
     
     
     <div class="flex border-b bdr text-sm font-semibold font-round text-600">
-      <button @click="show=false" class="center mr-3 text-base text-pri-500 hover:bg-slate-200 px-3">
+      <button @click="show=false" class="center mr-3 text-base text-pri-600 dark:text-pri-500 hover:bg-slate-100 dark:hover:bg-slate-700 px-3">
         <PhCaretLeft />
       </button>
       <div class="px-4 py-2">
@@ -32,19 +35,24 @@ onMounted(() => {
     
     <form class="p-4">
       <div class="mb-3">
-        <label for="email">Title</label>
-        <Input type="text" placeholder="Thread Title..." />
+        <label for="title">Title</label>
+        <Input id="title" type="text" placeholder="Thread Title..." />
       </div>
       {{contents}}
       <div v-html="contents" class="torch-doc w-72 border break-words"></div>
-      <Editor v-model="contents" />
+      
+      <div class="mb-3">
+        <label for="contents">Contents</label>
+        <Editor v-model="contents" />
+      </div>
+      
+      <div class="mb-3">
+        <label for="title">Title</label>
+        <Input id="title" type="text" placeholder="Thread Title..." />
+      </div>
     </form>
     
-    
   </div>
+
   </Transition>
 </template>
-
-<style>
-
-</style>

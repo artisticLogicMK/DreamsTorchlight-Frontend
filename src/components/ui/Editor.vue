@@ -1,106 +1,114 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
+import { onClickOutside } from '@vueuse/core'
 import Quill from 'quill'
-import { PhSmiley } from '@phosphor-icons/vue'
+import 'emoji-picker-element'
+import Emoji from '@/components/ui/Emoji.vue'
 
 const model = defineModel()
 const quillEditor = ref(null)
 
-const popupVisible = ref(false)
-const popupPosition = ref({ top: 0, left: 0 })
+const emojiPopup = ref(null)
+const emojiPopupVisible = ref(false)
+const emojiPopupPos = ref({ top: 0, left: 0 })
 
-// 🛠 Register custom font sizes with Quill
+// Hode emoji popup when outside of it is clicked
+onClickOutside(emojiPopup, () => {
+  emojiPopupVisible.value = false
+})
+
+// Register custom font sizes with Quill
 const Size = Quill.import('attributors/style/size')
 Size.whitelist = ['12px', '14px', '16px', '18px', '20px', '24px', '30px'] // Allowed sizes
 Quill.register(Size, true)
 
 let quill
+
 onMounted(() => {
-  
   nextTick(() => {
     if (quillEditor.value) {
-
-      const toolbarOptions = [
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ script: 'sub' }, { script: 'super' }],
-        [{ header: [1, 2, 3, false] }],
-        ['blockquote'],
-        [{ align: [] }],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        [{ indent: '-1' }, { indent: '+1' }],
-        [{ size: [] }],
-        [{ font: [] }],
-        [{ color: [] }, { background: [] }],
-        ['clean'],
-      ]
-
+      // initialize editor
       quill = new Quill(quillEditor.value, {
         theme: 'snow',
         modules: {
           toolbar: '#toolbar'
-        }
-      })
-
-      quill.on('text-change', () => {
-        model.value = quill.root.innerHTML
+        },
+        placeholder: 'Type contents here...\nType semicolon : to select emoji'
       })
       
+      // When content is typed into the editor
+      quill.on('text-change', () => {
+        model.value = {
+          html: quill.root.innerHTML, // Get html code
+          rawText: quill.getText() // full text content
+        }
+      })
+      
+      const showEmojiPopup = () => {
+        const text = quill.getText() // Get full text content
+        const range = quill.getSelection() // Get current cursor position
+        return { range, text }
+      }
+      
+      // This code block detects when semicolon(:) is typed and then invoke emoji popup
       quill.on('text-change', (delta, oldDelta, source) => {
         if (source === 'user') {
-          const text = quill.getText() // Get full text content
-          const range = quill.getSelection() // Get current cursor position
-          
-          if (range && text[range.index - 1] === ':') {alert(98)
+          const { range, text } = showEmojiPopup()
+          if (range && text[range.index - 1] === ':') { // If in focus and last char is :
             showPopup(range.index)
-            quill.deleteText(range.index - 1, 1)
+            quill.deleteText(range.index - 1, 1) // Delete the :
           }
         }
       })
       
-      // Function to insert text at the current cursor position
-      function insertTextAtCursor(text) {
-        const range = quill.getSelection(); // Get current cursor position
-      
-        if (range) {
-          quill.insertText(range, text) // Insert text at cursor
-        }
-      }
-      
-      // Example: Insert "Hello" when clicking a button
-      document.getElementById('insert-btn').addEventListener('click', (e) => {
-      e.preventDefault()
-        insertTextAtCursor('😳')
+      // When emoji custon button is clicked
+      document.getElementById('emoji-btn').addEventListener('click', (e) => {
+        e.preventDefault()
+        quill.focus() // Focus editor
+        const { range } = showEmojiPopup() // Get cursor position
+        showPopup(range.index) // Invoke emoji popup
       })
     }
   })
+  
 })
 
-// Function to show popup at cursor position
+
+// Function to show emojiPopup at cursor position
 const showPopup = (index) => {
+  // Get position of cursor
   const bounds = quill.getBounds(index)
-
-  console.log('Bounds:', bounds) // Debugging
-
-  popupPosition.value = {
-    top: bounds.top + 30, // 30px below cursor
+  
+  // Set emoji popup at bottom of the cursor with 15px offset
+  emojiPopupPos.value = {
+    top: bounds.top + 15, // 15px below cursor
     left: bounds.left,
   }
-
-  popupVisible.value = true
+  
+  // Then show the popup
+  emojiPopupVisible.value = true
 }
 
-// Hide popup when clicking outside
-const hidePopup = () => {
-  popupVisible.value = false
+// This function receives the value of Emoji Component event and then insert the emoji in editor
+const setEmoji = (emoji) => {
+  // Get focus position of editor
+  const range = quill.getSelection()
+  
+  // Focus editor if not in focus
+  if (!range) quill.focus()
+  
+  // If in focus, insert emoji
+  if (range) {
+    quill.insertText(range.index, emoji)
+  }
 }
 </script>
 
+
 <template>
   <div>
-    
-    <div id="toolbar" class="relative border-[none!important]">
-      <div class="absolute z-10 top-full left-0 w-full h-12h bg-sky-400"></div>
-      
+
+    <div id="toolbar" class="relative">
       <!-- Text Formatting -->
       <span class="ql-formats">
         <button class="ql-bold"></button>
@@ -161,7 +169,7 @@ const hidePopup = () => {
 
       <!-- Embeds: Links, Video.. -->
       <span class="ql-formats">
-        <button id="insert-btn" class="-mt-1 text-base">
+        <button id="emoji-btn" class="-mt-1 text-base">
           🙂
         </button>
         <button class="ql-link"></button>
@@ -178,41 +186,31 @@ const hidePopup = () => {
       <span class="ql-formats">
         <button class="ql-clean"></button>
       </span>
-      
-      <span class="ql-formats">
-        
-      </span>
     </div>
 
-    <div class="relative bg-slate-100">
+    <div class="relative">
       <div ref="quillEditor" class="torch-doc min-h-[200px]"></div>
       
-        <!-- Popup -->
-      <div 
-        v-ifj="popupVisible" 
-        class="popup" 
-        :style="{ top: `${popupPosition.top}px`, left: `${popupPosition.left}px` }"
-        @click="hidePopup"
+      <div
+        ref="emojiPopup"
+        v-if="emojiPopupVisible" 
+        class="emojiPopup" 
+        :style="{ top: `${emojiPopupPos.top}px`, lefth: `${emojiPopupPos.left}px` }"
       >
-        <p>Popup Content Here {{popupPosition.top}}</p>
+        <Emoji @emojiSelected="setEmoji" />
       </div>
     </div>
     
-     
   </div>
 </template>
 
 
 <style>
-/* Popup Styling */
-.popup {
-  position: absolute;
-  background: white;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
+/* emojiPopup Styling */
+.emojiPopup {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  @apply absolute w-full
 }
 
 .ql-container {
@@ -221,6 +219,10 @@ const hidePopup = () => {
 
 .ql-editor { 
   @apply text-[14px] text-slate-700 dark:text-slate-200
+}
+
+.ql-editor::before {
+  @apply text-sm leading-7 text-slate-400 dark:text-slate-500
 }
 
 .ql-container.ql-snow, .ql-toolbar.ql-snow{
