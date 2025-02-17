@@ -8,7 +8,6 @@ import PrimeVue from 'primevue/config'
 import Lara from '@primevue/themes/lara'
 import { definePreset } from '@primevue/themes'
 
-
 import App from './App.vue'
 import router from './router'
 

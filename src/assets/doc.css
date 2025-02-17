@@ -1,7 +1,7 @@
 /* Ensure torch-doc content retains styles */
 .torch-doc {
   line-height: 1.6;
-  color: #333;
+  @apply text-sm text-slate-800 dark:text-slate-200
 }
 
 .torch-doc p {
@@ -29,6 +29,9 @@
 }
 
 /* Headings */
+.torch-doc h1, .torch-doc h2, .torch-doc h3 {
+  @apply mb-3
+}
 .torch-doc h1 {
   font-size: 2em;
   font-weight: bold;
@@ -109,4 +112,8 @@
 .torch-doc .ql-script-super {
   vertical-align: super;
   font-size: smaller;
+}
+
+.torch-doc .ql-video {
+  @apply w-full max-w-lg aspect-video my-1 rounded-lg
 }

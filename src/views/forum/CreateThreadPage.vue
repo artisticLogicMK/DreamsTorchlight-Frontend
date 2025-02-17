@@ -36,7 +36,7 @@ onMounted(() => {
         <Input type="text" placeholder="Thread Title..." />
       </div>
       {{contents}}
-      <div v-html="contents" class="torch-doc"></div>
+      <div v-html="contents" class="torch-doc w-72 border break-words"></div>
       <Editor v-model="contents" />
     </form>
     
