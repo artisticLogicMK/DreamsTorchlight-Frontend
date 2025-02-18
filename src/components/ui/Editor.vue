@@ -6,6 +6,8 @@ import 'emoji-picker-element'
 import Emoji from '@/components/ui/Emoji.vue'
 
 const model = defineModel()
+const props = defineProps(['content'])
+
 const quillEditor = ref(null)
 
 const emojiPopup = ref(null)
@@ -36,11 +38,14 @@ onMounted(() => {
         placeholder: 'Type contents here...\nType semicolon : to select emoji'
       })
       
+      // If presaved content is specified for editor
+      if (props.content) quill.clipboard.dangerouslyPasteHTML(props.content)
+      
       // When content is typed into the editor
       quill.on('text-change', () => {
         model.value = {
           html: quill.root.innerHTML, // Get html code
-          rawText: quill.getText() // full text content
+          text: quill.getText() // full text content
         }
       })
       
@@ -189,7 +194,7 @@ const setEmoji = (emoji) => {
     </div>
 
     <div class="relative">
-      <div ref="quillEditor" class="torch-doc min-h-[200px]"></div>
+      <div ref="quillEditor" class="torch-doc"></div>
       
       <div
         ref="emojiPopup"
@@ -218,7 +223,7 @@ const setEmoji = (emoji) => {
 }
 
 .ql-editor { 
-  @apply text-[14px] text-slate-700 dark:text-slate-200
+  @apply text-[14px] text-slate-700 dark:text-slate-200 relative min-h-[200px]
 }
 
 .ql-editor::before {
@@ -229,7 +234,7 @@ const setEmoji = (emoji) => {
   @apply border bdr
 }
 .ql-toolbar.ql-snow{
-  @apply rounded-t-md
+  @apply rounded-t-md border-b-0
 }
 
 #toolbar * {
@@ -240,7 +245,7 @@ const setEmoji = (emoji) => {
   @apply border-none
 }
 #toolbar span svg {
-  @apply text-600
+  @apply text-600 dark:text-slate-300
 }
 #toolbar span svg {
   fill: transparent !important;
@@ -281,5 +286,37 @@ const setEmoji = (emoji) => {
 
 #toolbar .ql-picker-label.ql-active, .dark #toolbar .ql-picker-label.ql-active {
   @apply text-sky-600 dark:text-sky-500
+}
+
+.ql-tooltip {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  text-align: center;
+  z-index: 1000
+}
+
+.ql-picker-options span[data-value="12px"] {
+  font-size: 12px;
+}
+.ql-picker-options span[data-value="14px"] {
+  font-size: 14px;
+}
+.ql-picker-options span[data-value="16px"] {
+  font-size: 16px;
+}
+.ql-picker-options span[data-value="18px"] {
+  font-size: 18px;
+}
+.ql-picker-options span[data-value="20px"] {
+  font-size: 20px;
+}
+.ql-picker-options span[data-value="20px"] {
+  font-size: 20px;
+}
+.ql-picker-options span[data-value="24px"] {
+  font-size: 24px;
+}
+.ql-picker-options span[data-value="30px"] {
+  font-size: 30px;
 }
 </style>

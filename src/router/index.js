@@ -22,18 +22,16 @@ const router = createRouter({
       path: '/forum',
       name: 'forum-page',
       component: ForumPage,
-      children: [
-        {
-          path: '/forum/create-thread',
-          name: 'create-thread',
-          component: CreateThreadPage,
-        }
-      ]
     },
     {
       path: '/thread',
       name: 'thread-page',
       component: ThreadPage,
+    },
+    {
+      path: '/create-thread',
+      name: 'create-thread',
+      component: CreateThreadPage
     },
     {
       path: '/about',

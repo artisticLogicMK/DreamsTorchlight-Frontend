@@ -14,10 +14,8 @@ import ForumPageFilter from '@/components/forum/ForumPageFilter.vue'
     <ForumPageFilter />
     
     <div>
-      <ThreadCard v-for="n in 5" :showSmallTime="true" />
+      <ThreadCard  :showSmallTime="true" />
     </div>
-    
-    <RouterView />
 
   </ForumPageLayout>
 </template>

@@ -14,7 +14,7 @@ const threadOrder = ref('desc')
 <template>
   <div class="flex items-center justify-between border-b bdr px-4 py-2">
     
-    <RouterLink to="/forum/create-thread">
+    <RouterLink :to="{name: 'create-thread'}">
       <Button>
         <PhPlus class="text-lg font-semibold" weight="bold" /> Create
       </Button>

@@ -37,7 +37,7 @@ import { PhUsersThree, PhChartBar, PhNote, PhDot } from '@phosphor-icons/vue'
         Top Forums
       </h1>
       
-      <a v-for="n in 5" class="flex items-center text-xs font-roundb font-semibold mt-2 block hover:text-pri-500">
+      <a v-for="n in 4" class="flex items-center text-xs font-roundb font-semibold mt-2 block hover:text-pri-500">
         <PhDot weight="duotone" class="text-sm" />
         Dreams Interpretation
       </a>
