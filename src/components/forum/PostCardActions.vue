@@ -6,16 +6,16 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 <template>
   <div class="flex items-center justify-between">
     <div class="thread-acts">
-      <span>
+      <span @click="$emit('showComments')" class="cp">
         <PhChatCircle weight="fill" /> 256
       </span>
       <span>
         <PhEye weight="fill" /> 1,256
       </span>
-      <span>
+      <span class="cp">
         <PhHeart weight="fill" /> 412
       </span>
-      <span>
+      <span class="cp">
         <PhBookmarkSimple weight="fill" />
       </span>
     </div>

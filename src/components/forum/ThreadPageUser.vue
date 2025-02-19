@@ -29,7 +29,4 @@ import Userlevel from '@/components/user-items/Userlevel.vue'
 </template>
 
 <style>
-.post-time span {
-  @apply text-sm text-400
-}
 </style>

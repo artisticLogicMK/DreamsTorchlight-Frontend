@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
+    <meta name="theme-color" content="#19232d">
+    <title>DreamsTorchlight Forum</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +16,29 @@
   </head>
   <body>
     <div id="app" style="width:100%;height:100%;"></div>
+    
+    <script>
+const setTheme = (mode) => { 
+     // append document body class name with specified theme (dark/light) 
+     // app uses tailwindcss 'class' dark mode => <body class="dark"> 
+     document.documentElement.classList.remove("dark", "light") 
+     document.documentElement.classList.add(mode) 
+     document.querySelector('meta[name=theme-color]').setAttribute("content", mode == 'dark' ? "#020617" : "#ffffff") 
+ } 
+  
+ // if theme item not set by user then set to dark theme (default theme) 
+ if (!('theme' in localStorage)) { 
+     setTheme('dark') 
+ } 
+ // if theme item exist and is dark, & system dark mode on, set to dark theme 
+ else if (localStorage.theme === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) { 
+     setTheme('dark') 
+ } 
+ // if theme item not set, remove dark theme 
+ else { 
+     setTheme('light') 
+ }
+    </script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

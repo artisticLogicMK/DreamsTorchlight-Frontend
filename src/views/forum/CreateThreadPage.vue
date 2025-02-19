@@ -6,7 +6,7 @@ import EditThread from '@/components/forum/EditThread.vue'
 <template>
   <ForumPageLayout>
   
-    <EditThread intentk="edit" />
+    <EditThread intent="edit" />
     
   </ForumPageLayout>
 </template>

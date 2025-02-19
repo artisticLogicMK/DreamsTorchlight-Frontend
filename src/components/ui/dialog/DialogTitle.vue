@@ -1,6 +1,6 @@
 <script setup>
 import { cn } from '@/lib/utils';
-import { AlertDialogDescription } from 'radix-vue';
+import { DialogTitle, useForwardProps } from 'radix-vue';
 import { computed } from 'vue';
 
 const props = defineProps({
@@ -14,13 +14,17 @@ const delegatedProps = computed(() => {
 
   return delegated;
 });
+
+const forwardedProps = useForwardProps(delegatedProps);
 </script>
 
 <template>
-  <AlertDialogDescription
-    v-bind="delegatedProps"
-    :class="cn('text-sm text-slate-500 dark:text-slate-500', props.class)"
+  <DialogTitle
+    v-bind="forwardedProps"
+    :class="
+      cn('text-lg font-semibold leading-none tracking-tight', props.class)
+    "
   >
     <slot />
-  </AlertDialogDescription>
+  </DialogTitle>
 </template>

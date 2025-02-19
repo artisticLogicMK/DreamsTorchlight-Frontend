@@ -17,6 +17,16 @@ module.exports = {
       screens: {
         "2xl": "1400px",
       },
+      screens: {
+      'mic': '281px',
+      'xsm': '540px',
+      'sm': '640px',
+      'md': '768px',
+      'md2': '896px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     },
     extend: {
       keyframes: {

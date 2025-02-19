@@ -28,7 +28,7 @@ const items = [
     
     <ThreadCard :showSmallTime="false" />
     
-   <div class="border-b bdr text-sm text-600 whitespace-pre-line p-4 pt-0 -mt-1">
+   <div class="border-b bdr text-sm text-slate-700 dark:text-slate-200 whitespace-pre-line p-4 pt-0 -mt-2">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
     </div>
     

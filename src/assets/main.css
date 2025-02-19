@@ -50,10 +50,10 @@ body,html {
     @apply text-slate-300
   }
   .text-400 {
-    @apply text-slate-400 dark:text-white/50
+    @apply text-slate-400 dark:text-slate-400
   }
   .text-500 {
-    @apply text-slate-500 dark:text-white/75
+    @apply text-slate-500
   }
   .text-600 {
     @apply text-slate-600 dark:text-white/90
@@ -107,4 +107,23 @@ form .input {
 
 form .form-errs {
   @apply text-red-500 text-sm mb-1
+}
+
+.thread-acts {
+  @apply flex items-center text-sm text-400
+}
+.thread-acts span {
+  @apply flex items-center text-sm mr-4
+}
+.thread-acts span.cp {
+  @apply hover:text-slate-500 dark:hover:text-slate-400
+}
+.thread-acts span.sel {
+  @apply text-pri-500 hover:text-pri-600
+}
+.thread-acts svg {
+  @apply text-xl mr-1 -mt-[2px]
+}
+.post-time span {
+  @apply text-sm text-500
 }

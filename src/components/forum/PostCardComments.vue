@@ -43,5 +43,7 @@ const { textarea, input } = useTextareaAutosize({ styleProp: 'minHeight' })
       <PostCardCommentsResponse />
     </div>
     
+    <Button>Load More</Button>
+    
   </div>
 </template>

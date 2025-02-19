@@ -9,10 +9,10 @@ import ForumComponent from '@/components/forum/ForumComponent.vue'
     
     
     <div class="border-b bdr jlast:border-none p-4">
-      <a class="forums-list-head text-500 text-xl mb-2">
+      <RouterLink to="/category" class="forums-list-head text-500 text-xl mb-2">
         <PhLink weight="duotone" />
         General Discussions
-      </a>
+      </RouterLink>
       <p class="text-sm text-600 mb-3">Menu offers item customization with the item template that receives the menuitem instance from the model as a parameter...</p>
       
       <div class="relative border bdr rounded-2xl mt-5">

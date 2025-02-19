@@ -9,9 +9,9 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 
     <div class="flex items-end justify-between mb-2">
-      <a class="forums-list-head text-pri-500 text-lg">
-        <PhLink weight="duotone" /> General Discussions
-      </a>
+      <RouterLink to="/forum" class="forums-list-head text-pri-500 text-lg">
+        <PhLink weight="duotone" /> Dreams Interpretation
+      </RouterLink>
       <button class="text-pri-500 border border-sky-500 text-sm hover:opacity-70 px-2 py-0.5 rounded-md cp">Follow</button>
     </div>
     

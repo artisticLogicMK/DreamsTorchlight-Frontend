@@ -1,15 +1,24 @@
 <script setup>
-import {PhMagnifyingGlass, PhSliders, PhMoon, PhBell } from '@phosphor-icons/vue'
+import { PhMagnifyingGlass, PhSliders, PhMoon, PhSun, PhBell } from '@phosphor-icons/vue'
 import Button from '@/components/ui/button/Button.vue'
 
 const changeTheme = () => {
-  document.documentElement.classList.remove('light')
-  document.documentElement.classList.add('dark') 
-}
-
-const changeThemeL = () => {
-document.documentElement.classList.remove('dark') 
-  document.documentElement.classList.add('light') 
+  const currentTheme = document.documentElement.classList[0]
+  if (currentTheme == 'light') {
+    document.documentElement.classList.remove('light')
+    document.documentElement.classList.add('dark')
+    document.querySelector('meta[name=theme-color]').setAttribute("content", "#020617")
+    
+    // set theme in localStorage 
+    localStorage.theme = "dark"
+  } else {
+    document.documentElement.classList.remove('dark') 
+    document.documentElement.classList.add('light')
+    document.querySelector('meta[name=theme-color]').setAttribute("content", "#ffffff")
+    
+    // set theme in localStorage 
+    localStorage.theme = "light"
+  }
 }
 </script>
 
@@ -29,17 +38,18 @@ document.documentElement.classList.remove('dark')
       <div class="flex">
         <div class="nav-btns flex items-center">
           <button @click="changeTheme">
-            <PhMoon :size="22" />
+            <PhMoon :size="22" class="dark:hidden" />
+            <PhSun :size="22" class="hidden dark:block" />
           </button>
-          <button @click="changeThemeL">
+          <button>
             <PhBell :size="22" />
           </button>
         </div>
         
 
         <Button class="shrink-0 rounded-full">
-      Sign Up
-    </Button>
+          Sign Up
+        </Button>
       </div>
       
     </nav>

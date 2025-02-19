@@ -8,7 +8,12 @@ const props = defineProps({
 
 <template>
   <div
-    :class="cn('flex flex-col gap-y-2 text-center sm:text-left text-slate-700 dark:text-slate-300', props.class)"
+    :class="
+      cn(
+        'flex flex-col-reverse sm:flex-row sm:justify-end sm:gap-x-2 text-slate-700 dark:text-slate-300',
+        props.class,
+      )
+    "
   >
     <slot />
   </div>
