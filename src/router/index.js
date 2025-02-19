@@ -4,6 +4,7 @@ import ForumCategory from '../views/forum/ForumCategory.vue'
 import ForumPage from '../views/forum/ForumPage.vue'
 import ThreadPage from '../views/forum/ThreadPage.vue'
 import CreateThreadPage from '../views/forum/CreateThreadPage.vue'
+import CreatePostPage from '../views/forum/CreatePostPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/create-thread',
       name: 'create-thread',
       component: CreateThreadPage
+    },
+    {
+      path: '/create-post',
+      name: 'create-post',
+      component: CreatePostPage
     },
     {
       path: '/about',

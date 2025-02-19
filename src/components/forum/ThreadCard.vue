@@ -8,12 +8,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 <template>
   <div v-fojr="(n,i) in [1,2,3,4,5]" class="bdr p-4" :class="{'border-b': showSmallTime}">
     
-    <div v-if="i === 0" class="flex items-center w-fit bg-pri-500 dark:text-slate-900 text-flat text-sm font-semibold rounded-md px-3 py-1 mb-3">
+    <div v-if="i === 0" class="flex items-center w-fit bg-pri-500 dark:text-slate-900 text-flat text-sm font-semibold rounded-md px-3 py-1 mb-2">
       <PhPushPin class="mr-2" weight="bold" /> Pinned Thread
     </div>
 
     <div class="mb-2">
-      <a href="#" class="text-xl text-600 font-bold font-round">Your one-time or recurring contribution does a lot to keep us going. Your one-time or recurring contribution does a lot to keep us going.</a>
+      <a href="#" class="text-xl text-600 font-bold font-round">#Your one-time or recurring contribution does a lot to keep us going. Your one-time or recurring contribution does a lot to keep us going.</a>
     </div>
 
     <div v-if="showSmallTime === true" class="flex items-center text-xs mb-2">

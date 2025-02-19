@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, onUnmounted } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import Quill from 'quill'
 import 'emoji-picker-element'
@@ -107,6 +107,20 @@ const setEmoji = (emoji) => {
     quill.insertText(range.index, emoji)
   }
 }
+
+onUnmounted(() => {
+  if (quill) {
+    // Remove all event listeners by re-initializing the container
+    const quillContainer = quillEditor.value
+    if (quillContainer) {
+      const newContainer = quillContainer.cloneNode(true)
+      quillContainer.replaceWith(newContainer)
+    }
+
+    // Destroy Quill instance
+    quill = null
+  }
+})
 </script>
 
 
@@ -292,7 +306,15 @@ const setEmoji = (emoji) => {
   left: 50% !important;
   transform: translateX(-50%) !important;
   text-align: center;
-  z-index: 1000
+  z-index: 1000;
+}
+
+.dark .ql-tooltip {
+  @apply bg-slate-900 border-slate-800 shadow-md text-600
+}
+
+.dark .ql-tooltip input {
+  @apply bg-transparent bdr
 }
 
 .ql-picker-options span[data-value="12px"] {

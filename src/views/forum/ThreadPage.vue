@@ -4,11 +4,23 @@ import ThreadCard from '@/components/forum/ThreadCard.vue'
 import PostCard from '@/components/forum/PostCard.vue'
 import ForumPageFilter from '@/components/forum/ForumPageFilter.vue'
 import ThreadPageUser from '@/components/forum/ThreadPageUser.vue'
+import Breadcumb from '@/components/ui/Breadcumb.vue'
+
+const items = [
+  { name: 'Home', url: "/" },
+  { name: 'General Discussion', url: "/category" },
+  { name: 'Dreams Interpretation', url: "/forum" },
+  { name: 'This is the only way i have been seeing', url: "/thread" },
+]
 </script>
 
 
 <template>
   <ForumPageLayout>
+    
+    <template #breadcumb>
+      <Breadcumb :items="items" />
+    </template>
     
     <div class="p-4 pb-0 -mb-1">
       <ThreadPageUser />

@@ -1,20 +1,23 @@
 <script setup>
 import { ref } from 'vue'
+import { useTextareaAutosize } from '@vueuse/core'
 import { PhPlus } from '@phosphor-icons/vue'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import Button from '@/components/ui/button/Button.vue'
 import PostCardCommentsResponse from '@/components/forum/PostCardCommentsResponse.vue'
 
 const commentSort = ref('new')
+const { textarea, input } = useTextareaAutosize({ styleProp: 'minHeight' })
 </script>
 
 <template>
   <div class="border bdr rounded-xl mt-3 overflow-hidden shadow-sm">
     
     <form class="border-b bdr pb-3">
-      <textarea rows="3" class="w-full bg-transparent text-sm text-600 mb-2 p-3" placeholder="Type comment here..."></textarea>
+      <textarea ref="textarea"
+    v-model="input" rows="3" class="w-full bg-transparent text-sm text-600 mb-2h p-3 resize-none" placeholder="Type comment here..."></textarea>
       <div class="flex items-center justify-end sm:justify-start px-3">
-        <Button><PhPlus weight="bold" /> Add</Button>
+        <Button><PhPlus weight="bold" /> Comment</Button>
       </div>
     </form>
     

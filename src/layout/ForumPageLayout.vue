@@ -7,6 +7,8 @@ import ForumAnnouncement from '@/components/forum/ForumAnnouncement.vue'
 
 <template>
   <ForumLayout>
+  
+    <slot name="breadcumb"></slot>
 
     <ForumAnnouncement />
     
