@@ -4,6 +4,7 @@ import { PhMagnifyingGlass, PhPlus } from '@phosphor-icons/vue'
 import Button from '@/components/ui/button/Button.vue'
 import { InputIcon } from '@/components/ui/inputicon'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
+import ForumSearch from '@/components/forum/ForumSearch.vue'
 
 const props = defineProps(['page'])
 
@@ -55,9 +56,12 @@ const link = {
         </SelectContent>
       </Select>
       
-      <Button class="ml-2">
-        <PhMagnifyingGlass class="text-lg" weight="bold" />
-      </Button>
+
+      <ForumSearch>
+        <Button class="ml-2">
+          <PhMagnifyingGlass class="text-lg" weight="bold" />
+        </Button>
+      </ForumSearch>
     </div>
   
     

@@ -25,7 +25,7 @@ const forwardedProps = useForwardProps(delegatedProps);
     v-bind="forwardedProps"
     :class="
       cn(
-        'flex h-8 items-center justify-between rounded-md border bdr bg-transparent px-3 py-1 text-sm text-slate-600 dark:text-slate-200 ring-offset-white data-[placeholder]:text-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:truncate text-start dark:ring-offset-slate-950 dark:data-[placeholder]:text-slate-400 dark:focus:ring-sky-400/50',
+        'flex h-8 items-center justify-between rounded-md border bdr bg-transparent px-3 py-1 text-sm text-slate-600 dark:text-slate-200 ring-offset-white data-[placeholder]:text-slate-500 focus:outline-none focus:ring-1 focus:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:truncate text-start dark:ring-offset-slate-950 dark:data-[placeholder]:text-slate-300 dark:focus:ring-sky-400/50',
         props.class,
       )
     "

@@ -86,7 +86,7 @@ const showPopup = (index) => {
   
   // Set emoji popup at bottom of the cursor with 15px offset
   emojiPopupPos.value = {
-    top: bounds.top + 15, // 15px below cursor
+    top: bounds.top + 30, // 15px below cursor
     left: bounds.left,
   }
   
@@ -188,8 +188,8 @@ onUnmounted(() => {
 
       <!-- Embeds: Links, Video.. -->
       <span class="ql-formats">
-        <button id="emoji-btn" class="-mt-1 text-base">
-          🙂
+        <button id="emoji-btn">
+          <img src="@/assets/img/smiley.png" class="w-5" />
         </button>
         <button class="ql-link"></button>
         <button class="ql-video"></button>
