@@ -22,7 +22,7 @@ const items = [
 
     <ForumComponent />
     
-    <ForumPageFilter />
+    <ForumPageFilter page="thread" />
     
     <div>
       <ThreadCard  :showSmallTime="true" />

@@ -1,10 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 import ThreadPageUser from '@/components/forum/ThreadPageUser.vue'
+import PostCardQuote from '@/components/forum/PostCardQuote.vue'
 import PostCardActions from '@/components/forum/PostCardActions.vue'
 import PostCardComments from '@/components/forum/PostCardComments.vue'
 import Button from '@/components/ui/button/Button.vue'
 import Pinned from '@/components/ui/Pinned.vue'
+
+defineProps(['showSmallTime', 'showPin'])
 
 const showComments = ref(false)
 </script>
@@ -12,9 +15,11 @@ const showComments = ref(false)
 <template>
   <div class="border-b bdr p-4">
   
-    <Pinned v-ifn="isPinned && showPin" class="mb-3" />
+    <Pinned v-if="isPinned && showPin" class="mb-3" />
     
     <ThreadPageUser />
+    
+    <PostCardQuote v-if="false" />
     
     <div class="relative max-h-52 my-3 overflow-y-hidden">
       <p class="text-sm text-slate-700 dark:text-slate-200 whitespace-pre-line">

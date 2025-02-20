@@ -1,5 +1,6 @@
 <script setup>
 import ForumPageLayout from '@/layout/ForumPageLayout.vue'
+import ForumAnnouncement from '@/components/forum/ForumAnnouncement.vue'
 import ThreadCard from '@/components/forum/ThreadCard.vue'
 import PostCard from '@/components/forum/PostCard.vue'
 import ForumPageFilter from '@/components/forum/ForumPageFilter.vue'
@@ -22,6 +23,10 @@ const items = [
       <Breadcumb :items="items" />
     </template>
     
+    <template #announcement>
+      <ForumAnnouncement />
+    </template>
+    
     <div class="p-4 pb-0 -mb-1">
       <ThreadPageUser />
     </div>
@@ -32,7 +37,7 @@ const items = [
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
     </div>
     
-    <ForumPageFilter />
+    <ForumPageFilter page="post" />
     
     <div>
       <PostCard v-for="n in 3" />

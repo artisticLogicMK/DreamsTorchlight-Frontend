@@ -1,7 +1,6 @@
 <script setup>
 import ForumLayout from '@/layout/ForumLayout.vue'
 import ForumComponent from '@/components/forum/ForumComponent.vue'
-import ForumAnnouncement from '@/components/forum/ForumAnnouncement.vue'
 </script>
 
 
@@ -9,8 +8,8 @@ import ForumAnnouncement from '@/components/forum/ForumAnnouncement.vue'
   <ForumLayout>
   
     <slot name="breadcumb"></slot>
-
-    <ForumAnnouncement />
+    
+    <slot name="announcement"></slot>
     
     <slot />
     

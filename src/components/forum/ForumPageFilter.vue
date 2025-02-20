@@ -5,18 +5,25 @@ import Button from '@/components/ui/button/Button.vue'
 import { InputIcon } from '@/components/ui/inputicon'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 
+const props = defineProps(['page'])
+
 
 const threadSort = ref('hot')
 const threadOrder = ref('desc')
+
+const link = {
+  name: props.page === 'thread' ? 'create-thread' : 'create-post'
+}
 </script>
 
 
 <template>
   <div class="flex items-center justify-between border-b bdr px-4 py-2">
     
-    <RouterLink :to="{name: 'create-thread'}">
+    <RouterLink :to="link">
       <Button>
-        <PhPlus class="text-lg font-semibold" weight="bold" /> Create
+        <PhPlus class="text-lg font-semibold" weight="bold" />
+        {{ props.page === 'thread' ? 'Create' : 'Post' }}
       </Button>
     </RouterLink>
   

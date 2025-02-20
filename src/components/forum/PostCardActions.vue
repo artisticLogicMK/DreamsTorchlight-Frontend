@@ -30,9 +30,15 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
       <DropdownMenuContent>
         <DropdownMenuLabel>Post Actions</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <!-- if has wuote add quote=63054737 -->
+          <RouterLink to="/create-post/?post=5385528">Edit</RouterLink>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <RouterLink to="/create-post/?quote=63054737">Quote</RouterLink>
+        </DropdownMenuItem>
         <DropdownMenuItem>Report</DropdownMenuItem>
+        <DropdownMenuSeparator />
       </DropdownMenuContent>
     </DropdownMenu>
   </div>

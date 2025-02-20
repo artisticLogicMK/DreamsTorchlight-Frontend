@@ -51,7 +51,9 @@ defineProps(['showSmallTime', 'showPin'])
         <DropdownMenuContent>
           <DropdownMenuLabel>Thread Actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Edit</DropdownMenuItem>
+          <DropdownMenuItem>
+            <RouterLink to="/create-thread/?thread=63054737">Edit</RouterLink>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Follow</DropdownMenuItem>
           <DropdownMenuItem>Report</DropdownMenuItem>

@@ -8,16 +8,21 @@ import Button from '@/components/ui/button/Button.vue'
 import { Input } from '@/components/ui/input'
 import Editor from '@/components/ui/Editor.vue'
 import ConfirmDialog from '@/components/ui/ConfirmDialog.vue'
+import EditPostQuote from '@/components/forum/EditPostQuote.vue'
+import EditsImages from '@/components/forum/EditsImages.vue'
 
 const { toast } = useToast()
 
-const props = defineProps(['intent'])
+const props = defineProps(['intent', 'edit', 'quote'])
 
 const storedData = useLocalStorage('postDraft', { html: '', text: '' })
 
 const errors = ref({
   content: ''
 })
+
+const images = ref([])
+const imagesel = ref(4)
 
 // Define validation schema using yup
 const validationSchema = yup.object({
@@ -62,11 +67,17 @@ const submitPost = async () => {
   }
 }
 
+const removeImage = (img) => {
+  images.value = images.value.filter((im) => im !== img)
+}
+
 onMounted(() => {
- if (props.intent === 'edit') {
-    storedData.value = {
-      html: '<h1>___Database Content</h1>',
-      text: '___Database Content'
+ if (props.intent === "edit") {
+    storedData.value = props.edit.content
+    
+    if (props.edit.images && props.edit.images.length) {
+      images.value = props.edit.images
+      imagesel.value -= props.edit.images.length
     }
   }
 })
@@ -75,7 +86,7 @@ const del = () => alert(777)
 </script>
 
 <template>
-  <div class="absolute top-0 left-0 w-full h-full bg-flat overflow-y-auto">
+  <div class="w-full h-full bg-flat overflow-y-auto">
 
     <div class="flex items-center justify-between border-b bdr px-4 py-2">
         <h1 class="text-base font-semibold font-round text-600">{{ props.intent === 'edit' ? 'Edit' : 'Create' }} Post</h1>
@@ -88,6 +99,8 @@ const del = () => alert(777)
     
     <form class="p-4" @submit.prevent="submitPost">
       
+      <EditPostQuote v-if="props.quote" :quote="props.quote" @removeQuote="del" />
+      
       <div class="mb-5">
         <p class="label">Content</p>
         <div v-if="errors.content" class="form-errs">{{ errors.content }}</div>
@@ -96,14 +109,17 @@ const del = () => alert(777)
           :content="storedData.html"
         />
       </div>
-
+      
+      
+      <EditsImages
+        v-if="props.intent === 'edit' && images.length"
+        :images="images"
+        @removeImage="removeImage"
+      />
 
       <div class="mb-5">
-        <p class="label">Images</p>
-        <Input id="images" type="file" class="h-10 mb-2" />
-        <Input id="images" type="file" class="h-10 mb-2" />
-        <Input id="images" type="file" class="h-10 mb-2"/>
-        <Input id="images" type="file" class="h-10"/>
+        <p class="label">Upload Images</p>
+        <Input v-for="i in imagesel" :key="i" type="file" class="h-10 mb-2 last:mb-0" />
       </div>
       
       <div class="flex items-center justify-end sm:justify-center mb-5">
