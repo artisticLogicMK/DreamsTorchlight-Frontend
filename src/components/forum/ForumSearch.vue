@@ -9,9 +9,12 @@ import { Input } from '@/components/ui/input'
 const props = defineProps(['location','id'])
 
 
-const isGeneral = computed(() => props.location !== 'thread' && props.location !== 'post')
+const isGeneral = computed(() => props.location !== 'forum' && props.location !== 'thread')
 
 const filter = ref({
+  id: props.location === 'general' ? null : props.id,
+  returnType: props.location === 'general' || props.location === 'forum' ? 'thread' : props.location,
+  sort: null,
   order: 'desc'
 })
 
@@ -33,7 +36,7 @@ onMounted(() => {
         </DialogTitle>
       </DialogHeader>
       
-
+{{filter}} - {{props.location}}
       <form class="sch-form">
         <div class="mb-3">
           <Input
@@ -46,7 +49,7 @@ onMounted(() => {
           
           <div v-if="isGeneral" class="itm">
             <div class="label">In Forum</div>
-            <Select v-model="filter.forum">
+            <Select v-model="filter.id">
               <SelectTrigger class="w-full">
                 <SelectValue></SelectValue>
               </SelectTrigger>
@@ -62,15 +65,15 @@ onMounted(() => {
           </div>
           
           
-        <div v-if="props.location !== 'post'" class="itm">
+        <div v-if="props.location !== 'thread'" class="itm">
           <div class="label">Return</div>
-            <Select v-model="filter.return">
+            <Select v-model="filter.returnType">
               <SelectTrigger class="w-full">
                 <SelectValue></SelectValue>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="thread">Threads</SelectItem>
-                <SelectItem value="posts">Posts</SelectItem>
+                <SelectItem value="post">Posts</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -83,10 +86,11 @@ onMounted(() => {
                 <SelectValue></SelectValue>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem v-if="props.location === 'thread'" value="trending">Trending</SelectItem>
+                <SelectItem :value="null">Time Created</SelectItem>
+                <SelectItem value="trending">Trending</SelectItem>
                 <SelectItem value="views">Views</SelectItem>
-                <SelectItem value="posts">Posts</SelectItem>
-                <SelectItem v-if="props.location === 'post'" value="comments">Comments</SelectItem>
+                <SelectItem v-if="props.location === 'forum' || filter.return === 'forum'" value="posts">Posts</SelectItem>
+                <SelectItem v-if="props.location === 'thread' || filter.return === 'thread'" value="comments">Comments</SelectItem>
                 <SelectItem value="reactions">Reactions</SelectItem>
               </SelectContent>
             </Select>

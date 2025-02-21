@@ -24,13 +24,13 @@ const link = {
     <RouterLink :to="link">
       <Button class="rounded-full">
         <PhPlus class="text-lg font-semibold" weight="bold" />
-        {{ props.page === 'thread' ? 'Create' : 'Post' }}
+        {{ props.page === 'forum' ? 'Create' : 'Post' }}
       </Button>
     </RouterLink>
 
 
     <div class="flex items-center">
-      <ForumSearch :location="props.page === 'thread' ? 'thread' : 'post'" :id="3">
+      <ForumSearch :location="props.page === 'forum' ? 'forum' : 'thread'" :id="3">
         <Button class="ml-2 rounded-full">
           <PhMagnifyingGlass class="text-lg" weight="bold" /> Search
         </Button>
