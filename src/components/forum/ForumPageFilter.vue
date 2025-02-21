@@ -22,44 +22,17 @@ const link = {
   <div class="flex items-center justify-between border-b bdr px-4 py-2">
     
     <RouterLink :to="link">
-      <Button>
+      <Button class="rounded-full">
         <PhPlus class="text-lg font-semibold" weight="bold" />
         {{ props.page === 'thread' ? 'Create' : 'Post' }}
       </Button>
     </RouterLink>
-  
-    <div class="flex items-center">
-      
-      <Select v-model="threadSort">
-        <SelectTrigger class="mr-2">
-          <SelectValue placeholder="Sort By"></SelectValue>
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Sort By</SelectLabel>
-            <SelectItem value="hot">Hot Threads</SelectItem>
-            <SelectItem value="new">New Threads</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-      
-      <Select v-model="threadOrder">
-        <SelectTrigger>
-          <SelectValue placeholder="Sort by"></SelectValue>
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Sort By</SelectLabel>
-            <SelectItem value="desc">Descending</SelectItem>
-            <SelectItem value="asc">Ascending</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-      
 
-      <ForumSearch>
-        <Button class="ml-2">
-          <PhMagnifyingGlass class="text-lg" weight="bold" />
+
+    <div class="flex items-center">
+      <ForumSearch :location="props.page === 'thread' ? 'thread' : 'post'" :id="3">
+        <Button class="ml-2 rounded-full">
+          <PhMagnifyingGlass class="text-lg" weight="bold" /> Search
         </Button>
       </ForumSearch>
     </div>

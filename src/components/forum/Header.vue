@@ -1,6 +1,7 @@
 <script setup>
 import { PhMagnifyingGlass, PhSliders, PhMoon, PhSun, PhBell } from '@phosphor-icons/vue'
 import Button from '@/components/ui/button/Button.vue'
+import ForumSearch from '@/components/forum/ForumSearch.vue'
 
 const changeTheme = () => {
   const currentTheme = document.documentElement.classList[0]
@@ -28,11 +29,13 @@ const changeTheme = () => {
     <nav class="flex w-full max-w-7xl mx-auto items-center justify-between px-5 py-2">
       <img alt="DreamsTorchlight logo" class="h-6" src="@/assets/img/logo.png" />
       
-      <div id="search" class="">
-        <PhMagnifyingGlass size="20" class="icons text-slate-300 dark:text-slate-500" />
-        <div id="input"><input type="text" placeholder="Search forum..." class="text-500" /></div>
-        <PhSliders size="20" class="icons text-slate-600 dark:text-slate-300" />
-      </div>
+      
+      <ForumSearch location="general">
+        <div id="search">
+          <PhMagnifyingGlass size="20" class="icons text-slate-300 dark:text-slate-500" />
+          <div id="input"><input type="text" placeholder="Search forum..." class="text-500 pointer-events-none" /></div>
+        </div>
+      </ForumSearch>
       
       
       <div class="flex">
